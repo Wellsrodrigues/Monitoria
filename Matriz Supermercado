@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include "stdlib.h"
+#define N 5
+
+void tabelaAlterada(int estoque[N][N], int linha, int coluna){
+  //IMPRIMINDO A TEBELA ATUALIZADA
+      printf("\t___________________________________________________________\n");
+      printf("\t|\t\t\t\t\tTabela atualizada\t\t\t\t\t  |\n");
+      for(int linha=0; linha<5; linha++){
+        printf("\t|---------------------------------------------------------|\n");
+         for(int coluna=0; coluna<5; coluna++){
+           printf("\t|\t%d\t", estoque[linha][coluna]);
+         }
+         printf("  |\n");
+      }    
+      printf("\t|_________________________________________________________|\n");
+
+}
+
+ int main(void) {
+
+  int a, b, qtdRetirada;
+
+  //INICIALIZANDO A MATRIZ
+  int estoque[5][5]= {{150, 0, 100, 150, 200},
+                     {200, 300, 230, 100, 90},
+                     {250, 300, 0, 200, 150},
+                     {300, 100, 90, 450, 0},
+                     {350, 300, 400, 250, 200}};
+
+      //IMPRIMINDO A MATRIZ NO FORMATO DE TEBELA
+      printf("\t___________________________________________________________\n");
+      printf("\t|\t\t\t\t\tTabela de produtos\t\t\t\t\t  |\n");
+      for(int linha=0; linha<5; linha++){
+        printf("\t|_________________________________________________________|\n%d", linha);
+         for(int coluna=0; coluna<5; coluna++){
+           printf("\t|\t%d\t", estoque[linha][coluna]);
+         }
+         printf("  |\n");
+      }    
+      printf("\t|_________________________________________________________|\n");
+
+      for(int i=0; i<5;i++){
+        printf("\t\t%d\t", i);
+      }
+
+      //PEDINDO POSIÇÃO DA TABELA
+      do{
+        printf("\n\nInforme a posição do Produto na Tabela 5x5: ");
+        scanf("%d %d", &a, &b);
+
+      if(a == -1){
+        tabelaAlterada(estoque, 5, 5);
+         printf("\nEncerrado!\n");
+        exit(0);
+      }
+
+      printf("Qtde a ser retirada: ");
+      scanf("%d", &qtdRetirada);
+
+  for(int linha=0; linha<5; linha++){
+     for(int coluna=0; coluna<5; coluna++){
+       
+      if(a == linha && b == coluna){
+
+        if(qtdRetirada <= estoque[linha] [coluna]){
+            estoque[linha] [coluna] = estoque[linha] [coluna] - qtdRetirada;
+            printf("Efetuado com sucesso!\n\n");
+        }
+        else{
+           printf("Estoque insuficiente!\n\n");
+        }
+   }
+  }
+ }
+}while(a >= 0);
+
+//IMPRIMINDO TABELA ATUALIZADA
+tabelaAlterada(estoque, 5, 5);
+
+//VERIFICANDO O MAIOR VALOR DA MATRIZ
+ int maior = estoque[0][0];
+
+  for(int linha=0; linha<5; linha++){
+     for(int coluna=0; coluna<5; coluna++){
+       
+        if(estoque[linha] [coluna] > maior){
+          maior = estoque[linha] [coluna];
+        }
+     }
+}
+
+printf("\n\nMaior qtde de um mesmo produto: %d\n", maior);
+
+  return 0;
+  }
