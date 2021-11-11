@@ -23,4 +23,5 @@ int main(void) {
    else{
    	  printf("Sexo incorreto");
    }
+    
 }
